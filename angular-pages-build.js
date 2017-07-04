@@ -63,7 +63,7 @@ async function go() {
     let ROUTING_FILE_CONTENTS = await readFile(`${PROJECT_DIR}/src/app/pages/pages-routing.module.ts`)
     await writeFile(`${PROJECT_DIR}/src/app/pages/pages-routing.module.ts`, "".concat(`import { ${COMPONENT_CLASS_NAME} } from './${COMPONENT_MACHINE_NAME}/${COMPONENT_MACHINE_NAME}.component';\n`, ROUTING_FILE_CONTENTS))
 
-    Routes.push({ path: HTML_PATH.replace(`${PROJECT_DIR}/src/pages`, ''), component: COMPONENT_CLASS_NAME })
+    Routes.push({ path: HTML_PATH.replace(`${PROJECT_DIR}/src/pages/`, ''), component: COMPONENT_CLASS_NAME })
 
     i++
 
@@ -75,6 +75,9 @@ async function go() {
   i = 0
   while (Routes.length > i) {
     let Route = Routes[i]
+    if (Route.path == 'index.html') {
+      RoutesString = RoutesString.concat(`{ path: "", component: ${Route.component} }, `)
+    }
     RoutesString = RoutesString.concat(`{ path: "${Route.path}", component: ${Route.component} }, `)
     console.log('RouteString:')
     console.log(RoutesString)
