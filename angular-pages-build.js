@@ -16,6 +16,8 @@ async function go() {
   }
   catch(e) { }
   await exec(`cd "${PROJECT_DIR}/src/app" && ng generate module --routing pages`) 
+  // Get rid of the Pages module, we'll add components to the App module.
+  await exec(`rm "${PROJECT_DIR}/src/app/pages/pages.module.ts"`)
 
   // Get all MD file paths.
   await exec(`cd ""`)
