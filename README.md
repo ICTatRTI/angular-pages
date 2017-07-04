@@ -3,6 +3,9 @@ The static site generator that lets you mix Markdown, HTML, and Angular Componen
 
 
 ## Install Angular Pages into an NG CLI generated Angular App
+Prequisites:
+- Node 8 (nodejs.org)
+
 In the future we'll have an `angular-page init` command. For now, set up is manual.
 
 - Run `npm install -g angular-pages gh-markdown-cli angular-cli`.
