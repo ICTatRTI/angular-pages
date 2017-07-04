@@ -91,6 +91,10 @@ async function go() {
     // Generate the Component.
     await exec(`cd "${PROJECT_DIR}/src/app/pages" && ng generate component ${COMPONENT_MACHINE_NAME}`)
 
+    // Remove the test file because it will fail if there is a dependency.
+    await exec(`rm "${PROJECT_DIR}/src/app/pages/${COMPONENT_MACHINE_NAME}/${COMPONENT_MACHINE_NAME}.component.spec.ts"`)
+
+
     // Get the Component's Class Name that ng generated.
     let COMPONENT_FILE_CONTENTS = await readFile(`${PROJECT_DIR}/src/app/pages/${COMPONENT_MACHINE_NAME}/${COMPONENT_MACHINE_NAME}.component.ts`, 'utf-8')
     let COMPONENT_CLASS_NAME = (COMPONENT_FILE_CONTENTS.match('export class (.*) implements'))[1] 
