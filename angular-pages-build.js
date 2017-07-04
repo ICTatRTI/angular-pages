@@ -25,10 +25,12 @@ async function go() {
   const MD_PATHS = (await exec(`find ${PROJECT_DIR}/src/pages/ | grep ".md"`)).split('\n')
 
   // Convert them all to HTML
+  let HTML_PATHS_TO_CLEANUP = []
   MD_PATHS.forEach(async (MD_PATH) => { 
     let HTML_PATH = MD_PATH.replace('.md', '.html') 
     console.log(`Transpiling Markdown at ${MD_PATH} to HTML at ${HTML_PATH}`)
     await exec(`cat "${MD_PATH}" | mdown > "${HTML_PATH}"`)
+    HTML_PATHS_TO_CLEANUP.push(HTML_PATH);
   })
 
   // Get all HTML file paths.
@@ -96,7 +98,12 @@ async function go() {
   ROUTING_FILE_CONTENTS = ROUTING_FILE_CONTENTS.replace('const routes', RoutesString)
   await writeFile(`${PROJECT_DIR}/src/app/pages/pages-routing.module.ts`, ROUTING_FILE_CONTENTS)
 
-  // TODO: Add the index component to the '' route.
+  // Remove HTML files that were created out of markdown.
+  i = 0
+  while (HTML_PATHS_TO_CLEANUP.length > i) {
+    exec(`rm ${HTML_PATHS_TO_CLEANUP[i]}`)
+    i++
+  }
 
 }
 go()
