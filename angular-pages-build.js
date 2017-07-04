@@ -25,7 +25,25 @@ program.parse(process.argv)
 const PROJECT_DIR = process.cwd() 
 
 async function go() {
+
   const ANGULAR_PAGES_TEMP_DIR = `${PROJECT_DIR}/.angular-pages-temp${Date.now()}` 
+
+  // Look up exported Classes in the page module and remove their imports from app.module.ts in case any end up dangling.
+  const OLD_CLASSES = (await exec(`grep -r "export class" ${PROJECT_DIR}/src/app/pages | awk '{print $3}'`)).split('\n')
+  if (OLD_CLASSES.length > 0) {
+    let APP_FILE_CONTENTS = await readFile(`${PROJECT_DIR}/src/app/app.module.ts`, 'utf-8')
+    var n = 0
+    while (OLD_CLASSES.length > n) {
+      var OLD_CLASS = OLD_CLASSES[n]
+      LINE = ''
+      while (LINE = APP_FILE_CONTENTS.match(`.*${OLD_CLASS}.*\n`)) {
+        APP_FILE_CONTENTS = APP_FILE_CONTENTS.replace(LINE, '')
+      }
+      n++
+    }
+    await writeFile(`${PROJECT_DIR}/src/app/app.module.ts`, APP_FILE_CONTENTS)
+  }
+
   // Remove previously created pages module and regenerate it.
   try {
     await exec(`rm -r "${PROJECT_DIR}/src/app/pages"`)
@@ -115,6 +133,7 @@ async function go() {
   }
   catch(e) { }
 
+  console.log('Done.')
 }
 
 if (program.watch) {
