@@ -22,7 +22,7 @@ async function go() {
   // Get all MD file paths.
   await exec(`cd ""`)
   index=0
-  const MD_PATHS = (await exec(`find ${PROJECT_DIR}/src/pages/ | grep ".md"`)).split('\n')
+  const MD_PATHS = (await exec(`find ${PROJECT_DIR}/pages/ | grep ".md"`)).split('\n')
 
   // Convert them all to HTML
   let HTML_PATHS_TO_CLEANUP = []
@@ -34,8 +34,8 @@ async function go() {
   })
 
   // Get all HTML file paths.
-  await exec(`cd "${PROJECT_DIR}/src/pages"`)
-  const HTML_PATHS = (await exec(`find ${PROJECT_DIR}/src/pages | grep -v "\.\/\/" | grep ".html"`)).split('\n')
+  await exec(`cd "${PROJECT_DIR}/pages"`)
+  const HTML_PATHS = (await exec(`find ${PROJECT_DIR}/pages | grep -v "\.\/\/" | grep ".html"`)).split('\n')
   console.log(`HTML_PATHS: ` + JSON.stringify(HTML_PATHS))
 
   // TODO: Transpile anchor tags into NG Router links.
@@ -67,7 +67,7 @@ async function go() {
     let ROUTING_FILE_CONTENTS = await readFile(`${PROJECT_DIR}/src/app/pages/pages-routing.module.ts`)
     await writeFile(`${PROJECT_DIR}/src/app/pages/pages-routing.module.ts`, "".concat(`import { ${COMPONENT_CLASS_NAME} } from './${COMPONENT_MACHINE_NAME}/${COMPONENT_MACHINE_NAME}.component';\n`, ROUTING_FILE_CONTENTS))
 
-    Routes.push({ path: HTML_PATH.replace(`${PROJECT_DIR}/src/pages/`, ''), component: COMPONENT_CLASS_NAME })
+    Routes.push({ path: HTML_PATH.replace(`${PROJECT_DIR}/pages/`, ''), component: COMPONENT_CLASS_NAME })
 
     i++
 
