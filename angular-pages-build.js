@@ -35,9 +35,11 @@ async function go() {
     var n = 0
     while (OLD_CLASSES.length > n) {
       var OLD_CLASS = OLD_CLASSES[n]
-      LINE = ''
-      while (LINE = APP_FILE_CONTENTS.match(`.*${OLD_CLASS}.*\n`)) {
-        APP_FILE_CONTENTS = APP_FILE_CONTENTS.replace(LINE, '')
+      if (OLD_CLASS !== 'PagesRoutingModule') {
+        LINE = ''
+        while (LINE = APP_FILE_CONTENTS.match(`.*${OLD_CLASS}.*\n`)) {
+          APP_FILE_CONTENTS = APP_FILE_CONTENTS.replace(LINE, '')
+        }
       }
       n++
     }
