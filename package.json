@@ -12,7 +12,7 @@
     "walkdir": "0.0.11"
   },
   "bin": {
-    "tangy": "./angular-pages.js"
+    "angular-pages": "./angular-pages.js"
   },
   "devDependencies": {},
   "scripts": {
