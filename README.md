@@ -1,21 +1,22 @@
 # Angular Pages
-Build an angular site from a folder of HTML or Markdown files. Routes are automatically generated to mimic the structure of those files in the `./src/pages` directory.
+Build an angular site from a folder of HTML or Markdown files. Routes are automatically generated to mimic the structure of those files in the `./pages` directory of your Angular Project.
 
 
-## Install Angular Pages into your Angular App
+## Install Angular Pages into an NG CLI generated Angular App
 In the future we'll have an `angular-page init` command. For now, set up is manual.
 
 - Run `npm install -g angular-pages gh-markdown-cli angular-cli`.
-- create a `pages` directory at `./src/pages`.
-- create a `./src/pages/index.md` file.
-- Run `angular-pages build`
-- ES6 and Angular import the `PagesModule` into `./src/app/app.module.ts` 
+- If you haven't generated your project yet, run `ng new my-new-project && cd my-new-project`.
+- create a `pages` directory at `./pages`.
+- Run `angular-pages build` (always run in the root directory of your Angular project)
+- ES6 and Angular import the `PagesRouterModule` at `./src/pages/pages-routing.module.ts` into `./src/app/app.module.ts` 
 
 Optional:
+- In your `package.json`, add `angular-pages build && ` to `npm build`.
 - Set `useHash: false` in `app-routing.module.ts` if you are using a static server like Github Pages.
-- In your `package.json`, add `angular-markdown-pages build && ` to `npm build`.
-- Coming soon: Add the `angular-pages build --watch && ` to `npm start` 
+- Create a `./pages/index.md` file to create a root path.
+- Coming soon: Add the `angular-pages build --watch & ng serve` to `npm start` 
 
 
 ## Write your pages
-Put any HTML or Mardown files in the `./src/pages` directory, run `angular-pages build` the script will create a Component and Route for that page in your Angular App. For example, if you had a Markdown page at `./src/pages/some-path/hello-world.md`, you would then see the rendered HTML when you go to the `/some-path/hello-world` in your app.
+- Put any HTML or Mardown files in the `./pages` directory, run `angular-pages build` the script will create a Component and Route for that page in your Angular App. For example, if you had a Markdown page at `./pages/some-path/hello-world.md`, you would then see the rendered HTML when you go to the `/some-path/hello-world` in your app.
