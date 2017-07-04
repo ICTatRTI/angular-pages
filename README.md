@@ -5,11 +5,13 @@ Build an angular site from a folder of HTML or Markdown files. Routes are automa
 ## Install Angular Pages into your Angular App
 In the future we'll have an `angular-page init` command. For now, set up is manual.
 
-- Run `npm install --save angular-pages`.
-- create a `pages` directory.
-- create a `pages/index.md` file.
+- Run `npm install -g angular-pages gh-markdown-cli angular-cli`.
+- create a `pages` directory at `./src/pages`.
+- create a `./src/pages/index.md` file.
 - Run `angular-pages build`
-- Set the '/' route to the `AngularMarkdownPageIndexComponent` in `app-routing.module.ts`.
+- ES6 and Angular import the `PagesModule` into `./src/app/app.module.ts` 
+
+Optional:
 - Set `useHash: false` in `app-routing.module.ts` if you are using a static server like Github Pages.
 - In your `package.json`, add `angular-markdown-pages build && ` to `npm build`.
 - Coming soon: Add the `angular-pages build --watch && ` to `npm start` 
