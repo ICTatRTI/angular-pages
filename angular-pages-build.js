@@ -67,19 +67,21 @@ async function go() {
     let ROUTING_FILE_CONTENTS = await readFile(`${PROJECT_DIR}/src/app/pages/pages-routing.module.ts`)
     await writeFile(`${PROJECT_DIR}/src/app/pages/pages-routing.module.ts`, "".concat(`import { ${COMPONENT_CLASS_NAME} } from './${COMPONENT_MACHINE_NAME}/${COMPONENT_MACHINE_NAME}.component';\n`, ROUTING_FILE_CONTENTS))
 
-    Routes.push({ path: HTML_PATH.replace(`${PROJECT_DIR}/pages/`, ''), component: COMPONENT_CLASS_NAME })
+    Routes.push({ path: (HTML_PATH.replace(`${PROJECT_DIR}/pages/`, '')).replace('.html', ''), component: COMPONENT_CLASS_NAME })
 
     i++
 
   }
-  
+   
+  // Generate the string of routes for the page routing module.
   console.log('Routes:')
   console.log(JSON.stringify(Routes))
   let RoutesString = 'const routes: Routes = ['
   i = 0
   while (Routes.length > i) {
     let Route = Routes[i]
-    if (Route.path == 'index.html') {
+    // If this is the index, set an extra route that points at the root path.
+    if (Route.path == 'index') {
       RoutesString = RoutesString.concat(`{ path: "", component: ${Route.component} }, `)
     }
     RoutesString = RoutesString.concat(`{ path: "${Route.path}", component: ${Route.component} }, `)
