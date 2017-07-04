@@ -9,7 +9,8 @@
     "fs-extra": "^0.26.4",
     "single-line-log": "^1.0.1",
     "unirest": "^0.4.2",
-    "walkdir": "0.0.11"
+    "walkdir": "0.0.11",
+    "watch": "^1.0.2"
   },
   "bin": {
     "angular-pages": "./angular-pages.js"
