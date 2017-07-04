@@ -1,5 +1,5 @@
 # Angular Pages
-Build an angular site from a folder of HTML or Markdown files. Routes are automatically generated to mimic the structure of those files in the `./pages` directory of your Angular Project.
+The static site generator that lets you mix Markdown, HTML, and Angular Components! Write your HTML or Markdown files and Angular Components with Routes will be generated to mimic the structure of those files in the `./pages` directory of your Angular Project.
 
 
 ## Install Angular Pages into an NG CLI generated Angular App
