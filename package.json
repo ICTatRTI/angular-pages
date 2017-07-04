@@ -1,6 +1,6 @@
 {
   "name": "angular-pages",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Build an Angular app from a directory of HTML or Markdown files",
   "main": "angular-pages.js",
   "dependencies": {
