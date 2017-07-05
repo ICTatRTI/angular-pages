@@ -16,9 +16,9 @@ In the future we'll have an `angular-page init` command. For now, set up is manu
 
 Optional:
 - In your `package.json`, add `angular-pages build && ` to `npm build`.
-- Set `useHash: false` in `app-routing.module.ts` if you are using a static server like Github Pages.
+- Add the `angular-pages build --watch & ng serve` to `npm start` 
+- Set `imports: [RouterModule.forRoot(routes, { useHash: true })],` in `app-routing.module.ts` if you are using a static server like Github Pages. This will make sure URLs are formed like `foo.com/#/my-angular-route/` as opposed to `foo.com/my-angular-route`.  If you did not set `useHash` to `true` and a user hits reload in their browser on `foo.com/my-angular-route`, that will cause the browser to ask the static server for `foo.com/my-angular-route/index.html` because of how static web servers work.
 - Create a `./pages/index.md` file to create a root path.
-- Coming soon: Add the `angular-pages build --watch & ng serve` to `npm start` 
 
 
 ## Write your pages

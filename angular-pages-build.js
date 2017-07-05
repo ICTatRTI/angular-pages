@@ -71,6 +71,7 @@ async function go() {
   let HTML_PATHS_TO_CLEANUP = []
   MD_PATHS.forEach(async (MD_PATH) => { 
     let HTML_PATH = MD_PATH.replace('.md', '.html') 
+    // TODO: Use `__dirname/node_modules/.bin/gh-markdown-cli/mdown`
     await exec(`cat "${MD_PATH}" | mdown > "${HTML_PATH}"`)
   })
 
