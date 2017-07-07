@@ -23,3 +23,7 @@ Optional:
 
 ## Write your pages
 - Put any HTML or Mardown files in the `./pages` directory, run `angular-pages build` the script will create a Component and Route for that page in your Angular App. For example, if you had a Markdown page at `./pages/some-path/hello-world.md`, you would then see the rendered HTML when you go to the `/some-path/hello-world` in your app.
+
+## You might not need Angular Pages if...
+- You just need a static site where you can define arbitrary page stucture with a series of Markdown files but you don't need Angular Components on those pages. Use mdWiki! It's brilliant. 
+- You need RSS feeds for a blog.
