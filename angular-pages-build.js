@@ -34,8 +34,8 @@ async function go() {
   const TEMP_DIR = `${homedir()}/.angular-pages-${Date.now()}` 
   await exec(`mkdir ${TEMP_DIR}`)
 
-  // Create a temporary template Angular project and generate a pages module in it.
-  await exec(`cd ${TEMP_DIR} && ng new --skip-git --skip-tests --skip-install template && cd template && ng generate module --routing pages`)
+  // Create a temporary template Angular project, create a node_modules directory to fool `node-modules-path` checker, and generate a pages module.
+  await exec(`cd ${TEMP_DIR} && ng new --skip-git --skip-tests --skip-install template && cd template && mkdir node_modules && ng generate module --routing pages`)
  
   // Copy the pages over to the temporary directory for processing.
   await exec(`cp -r "${PROJECT_DIR}/pages" "${TEMP_DIR}/pages"`)
